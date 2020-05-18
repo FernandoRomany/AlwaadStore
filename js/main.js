@@ -469,94 +469,25 @@ $(document).ready(function () {
 
 });
 //Slider Product
-$(document).ready(function () {
-    var sync1 = $(".sync1");
-    var sync2 = $(".sync2");
 
-    sync1.owlCarousel({
+$(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
         rtl: true,
-        loop: true,
-        singleItem: true,
-        slideSpeed: 1000,
-//        callbacks: true,
-        navigation: true,
-        pagination: false,
-        afterAction: syncPosition,
-        responsiveRefreshRate: 200,
-        navigationText: [
-            "<i class='fa fa-chevron-left'></i>",
-            "<i class='fa fa-chevron-right'></i>"
-        ]
-    });
-
-    sync2.owlCarousel({
-        rtl: true,
-        loop: true,
-        items: 4,
-        itemsDesktop: [1199, 4],
-        itemsDesktopSmall: [979, 3],
-        itemsTablet: [768, 3],
-        itemsMobile: [479, 2],
-        pagination: false,
-        responsiveRefreshRate: 100,
-        afterInit: function (el) {
-            el.find(".owl-item").eq(0).addClass("synced");
-        }
-    });
-
-    function syncPosition(el) {
-        var current = this.currentItem;
-        $(".sync2")
-                .find(".owl-item")
-                .removeClass("synced")
-                .eq(current)
-                .addClass("synced")
-        if ($(".sync2").data("owlCarousel") !== undefined) {
-            center(current)
-        }
-    }
-
-    $(".sync2").on("click", ".owl-item", function (e) {
-        e.preventDefault();
-        var number = $(this).data("owlItem");
-        sync1.trigger("owl.goTo", number);
-    });
-
-    function center(number) {
-        var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
-        var num = number;
-        var found = false;
-        for (var i in sync2visible) {
-            if (num === sync2visible[i]) {
-                var found = true;
+        loop:true,
+        margin:10,
+        nav:false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:1
             }
         }
-
-        if (found === false) {
-            if (num > sync2visible[sync2visible.length - 1]) {
-                sync2.trigger("owl.goTo", num - sync2visible.length + 2)
-            } else {
-                if (num - 1 === -1) {
-                    num = 0;
-                }
-                sync2.trigger("owl.goTo", num);
-            }
-        } else if (num === sync2visible[sync2visible.length - 1]) {
-            sync2.trigger("owl.goTo", sync2visible[1])
-        } else if (num === sync2visible[0]) {
-            sync2.trigger("owl.goTo", num - 1)
-        }
-
-    }
-
-    // prettyPhoto
-    // ---------------------------------------------------------------------------------------
-    $("a[rel^='prettyPhoto']").prettyPhoto({
-        theme: 'facebook',
-        slideshow: 5000,
-        autoplay_slideshow: true
-    });
-
+    })
 });
 
 
