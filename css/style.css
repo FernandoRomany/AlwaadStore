@@ -3461,7 +3461,7 @@ footer {
 }
 
 .cart-table tr td:nth-child(3) {
-    text-align: left;
+    text-align: right;   /* Edited */
     padding: 15px 40px;
 }
 
